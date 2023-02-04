@@ -2,6 +2,7 @@ package auth
 
 import (
 	"ginApp/database"
+	"ginApp/models"
 	"net/http"
 	"time"
 
@@ -17,7 +18,7 @@ func hashPassword(password string) (string, error) {
 }
 
 func RegisterHandler(c *gin.Context) {
-	var user struct {
+	var userData struct {
 		Name string `form:"name" binding:"required"`
 		Email string `form:"email" binding:"required"`
 		Password string `form:"password" binding:"required"`
@@ -25,26 +26,44 @@ func RegisterHandler(c *gin.Context) {
 	}
 
 
-	if err := c.ShouldBind(&user); err != nil {
+	if err := c.ShouldBind(&userData); err != nil {
 		c.JSON(400, gin.H{"error": err.Error()})
 		return
 	}
 
-	hashedPassword, err := hashPassword(user.Password)
+	existingUser := models.User{Email: userData.Email}
+	has, err := database.Db.Table("users").Get(&existingUser)
+	
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Database error"})
+		return
+	}
+	if has {
+		c.JSON(400, gin.H{"error": "Email already exists"})
+		return
+	}
+
+
+	hashedPassword, err := hashPassword(userData.Password)
 
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Hash error"})
 		return
 	}
 
-	res, err := database.Db.Exec("INSERT INTO users (name, email, password, fcm_token) VALUES (?, ?, ?, ?)", user.Name, user.Email, hashedPassword, user.FcmToken); 
+	user := models.User{
+		Name:     userData.Name,
+		Email:    userData.Email,
+		Password: hashedPassword,
+		FcmToken: userData.FcmToken,
+	}
+
+	userID, err := database.Db.Table("users").Insert(&user)
 	 
 	 if err != nil {
 		c.JSON(500, gin.H{"error": "Insertion error"})
 		return
 	}
-
-	userID, err := res.LastInsertId()
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "No id returned"})

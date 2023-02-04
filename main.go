@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"ginApp/database"
-	"ginApp/users"
+	"ginApp/modules/auth"
+	"ginApp/modules/users"
 
 	"github.com/gin-gonic/gin"
 
@@ -25,5 +26,7 @@ func main()  {
 	
 	
 	users.Users(router)
+	auth.Routes(router)
+
 	router.Run(":8080")
 }
