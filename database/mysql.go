@@ -1,5 +1,4 @@
 // database/mysql.go
-
 package database
 
 import (
