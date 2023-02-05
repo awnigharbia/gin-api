@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"ginApp/database"
 	"ginApp/modules/auth"
+	"ginApp/modules/upload"
 	"ginApp/modules/users"
 
 	"github.com/gin-gonic/gin"
@@ -12,7 +13,6 @@ import (
 )
 
 func main()  {
-
 	db, err := database.ConnectDB()
 
 	if err != nil {
@@ -27,6 +27,7 @@ func main()  {
 	
 	users.Users(router)
 	auth.Routes(router)
+	upload.Routes(router)
 
 	router.Run(":8080")
 }

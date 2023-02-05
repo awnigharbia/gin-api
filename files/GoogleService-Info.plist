@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>523824805931-na5ntbcjfdsau75uan3u6tt0trac9i5o.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.523824805931-na5ntbcjfdsau75uan3u6tt0trac9i5o</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAf4LqUOzsCLKlLL1OhkBgmacEzCmXwmrI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>523824805931</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mustafahameed.hishamapp</string>
+	<key>PROJECT_ID</key>
+	<string>hisham-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hisham-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:523824805931:ios:f3825cb6ff8e2ced4d526e</string>
+</dict>
+</plist>
