@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"ginApp/database"
 	"ginApp/modules/auth"
+	"ginApp/modules/notifications"
 	"ginApp/modules/upload"
 	"ginApp/modules/users"
 
@@ -28,6 +29,7 @@ func main()  {
 	users.Users(router)
 	auth.Routes(router)
 	upload.Routes(router)
+	notifications.Routes(router)
 
 	router.Run(":8080")
 }
